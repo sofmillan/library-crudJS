@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Library CRUD</title>
+</head>
+<body>
+    <main>
+        <section class="form-section">
+            <h2 class="subtitle">Fill the information</h2>
+            <form action="" class="form" id="form">
+                <label for="id">Id</label>
+                <input type="number" id="id" name="id">
+            
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+            
+                <label for="genre">Genre</label>
+                <select name="genre" id="genre">
+                    <option value="/" disabled>Choose an option</option>
+                    <option value="science">Science</option>
+                    <option value="socialStudies">Social Studies</option>
+                    <option value="math">Math</option>
+                </select>
+
+                <label for="status">Status</label>
+                
+                <input type="radio" name="status" id="available" value="available">
+                <label for="available" class="inline-label">Available</label>
+                <br>        
+                
+                <input type="radio" name="status" id="unavailable" value="unavailable">
+                <label for="unavailable" class="inline-label">Unavailable</label>
+                
+                <button type="submit" id="submitBtn">Save</button>
+                <button type="reset">Clear</button>
+
+            </form>
+            
+        
+           </section>
+          <section class="table-section">
+            <form class="search">
+                        <input type="text" placeholder="🔍Search book by id" id="inputSearch">
+                    </form>
+                    <table>
+                        <thead>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Genre</th>
+                            <th>Status</th>
+                            <th>Botones</th>
+                        </thead>
+                        <tbody id="table-body">
+                            <tr class="table-row">
+                                <td>001</td>
+                                <td>Geography for Dummies</td>
+                                <td>Social Studies</td>
+                                <td>Available</td>
+                                <td><button class="delete">Delete</button>
+                                    <button class="edit">Update</button></td>
+                                
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </section>
+    </main>
+   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script src="./scripts/index.js" type="module"></script>
+</body>
+</html>
