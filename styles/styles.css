@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+
+:root{
+    --light-blue:#B6B8D6;
+    --dark-pruple:#6f58c9;
+}
 *{
     padding:0;
     margin:0;
@@ -22,7 +27,7 @@ main{
 }
 
 .form-section .subtitle{
-    color:#6f58c9;
+    color:var(--dark-pruple);
 }
 .form-section #id, .form-section #name,
  .form-section #genre, .table-section #inputSearch{
@@ -32,13 +37,13 @@ main{
     border-radius: 8px;
     padding:0.4rem;
     border: none;
-    border: 2px solid #B6B8D6;
+    border: 2px solid var(--light-blue);
 }
 
 .form-section input[name="status"] {
-	accent-color: #6f58c9;
+	accent-color:var(--dark-pruple);
 }
-input:focus{
+input:focus, select:focus{
     outline: none;
     background-color:#f4f6ff ;
 }
@@ -59,7 +64,7 @@ input:focus{
     display:block;
     width:100%;
     color:black;
-    border: 2px solid #B6B8D6;
+    border: 2px solid var(--light-blue);
     margin:1.2rem 0;
     height:1.8rem;
     border-radius: 0.5rem; 
@@ -91,20 +96,20 @@ input:focus{
 .table-section table{
     width:100%;
     text-align: center;
-    border: 2px solid #B6B8D6;
+    border: 2px solid var(--light-blue);
     border-radius: 4px;
     padding-top:0.5rem;
     
 }
 
 .table-section table th{
-    border-bottom: 1px solid #B6B8D6;
-    color:#6f58c9;
+    border-bottom: 1px solid var(--light-blue);
+    color:var(--dark-pruple);
 }
  
 
 .table-row{
-    border: 2px solid #B6B8D6;
+    border: 2px solid var(--light-blue);
 }
 
 .table-row button{

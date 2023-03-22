@@ -5,13 +5,14 @@ const tbody = document.getElementById("table-body");
 const id = document.getElementById("id");
 const name = document.getElementById("name");
 const genre = document.getElementById("genre");
-const available = document.getElementById("available");
-const unavailable = document.getElementById("unavailable");
+const available = document.getElementById("Available");
+const unavailable = document.getElementById("Unavailable");
 const form = document.getElementById("form");
 const searchForm= document.querySelector(".search");
 const searchInput = document.getElementById("inputSearch");
-
+let found = [];
 let targetName;
+
 const print = (list, container) =>{
     container.innerHTML = "";
     list.forEach((item)=>{
@@ -32,7 +33,6 @@ const print = (list, container) =>{
 }
 
 
-let found = [];
 print(books, tbody);
 
 
@@ -124,13 +124,8 @@ form.addEventListener("submit", (event) => {
             }
         });
     
-        let idExists = false;
-        books.forEach(book => {
-            if(book.id==newBook.id){
-                idExists = true;
-            }
-        })
-        if(!idExists){
+        let search = books.find(book=>book.id==newBook.id);
+        if(!search){
             books.push(newBook);
             console.log(genre.value);
             Swal.fire('Book saved')
