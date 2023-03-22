@@ -32,13 +32,22 @@ const print = (list, container) =>{
     found = [];
 }
 
+const clearFields=(valuesForm)=>{
+    valuesForm.forEach(input=>{
+        if(input.id && input.classList!="radio"){
+            input.value = "";
+        }
+        if(input.id=="Available"){
+            input.checked = true;
+        }
+    })
+}
 
 print(books, tbody);
 
 
 searchForm.addEventListener("submit",(event)=>{
     event.preventDefault();
-
   
     let inputValue = searchInput.value;
     let boolfound = false;
@@ -110,9 +119,11 @@ form.addEventListener("submit", (event) => {
     const { target } = event;
    
     const valuesForm = Object.values(form);
-    if(selectedRow==null){
-    if(name.value!==""&&id.value!==""&&genre.value!==""){
+    if(!selectedRow){
+    if(name.value &&id.value &&genre.value){
+
         const newBook = {};
+
         valuesForm.forEach((input)=>{
             if(input.id){
                 if(input.className=="radio" && input.checked){
@@ -125,37 +136,30 @@ form.addEventListener("submit", (event) => {
         });
     
         let search = books.find(book=>book.id==newBook.id);
+
         if(!search){
             books.push(newBook);
-            console.log(genre.value);
+    
             Swal.fire('Book saved')
         }else{
             Swal.fire('Id already exists, try again')
         }
       
-        valuesForm.forEach(input=>{
-            if(input.id && input.classList!="radio"){
-                input.value = "";
-            }
-            if(input.id=="Available"){
-                input.checked = true;
-            }
-        })
-
+        clearFields(valuesForm);
         print(books, tbody);
     }else{
         Swal.fire('Fill all the inputs');
     }
    }else{
-
         books.forEach(book=>{
             if(targetName==book.id){
                 let search = books.find(book=>book.id==id.value);
-                console.log(search);
+
                 if(book.id==id.value||(book.id!==id.value && !search)){
                     book.id = id.value;
                     book.name = name.value;
                     book.genre = genre.value;
+
                     if(available.checked){
                         book.status = available.value;
                     }else{
@@ -163,25 +167,18 @@ form.addEventListener("submit", (event) => {
                     }
                     Swal.fire('Book successfully updated');
                 }else{
+
                     if(search){
                         Swal.fire('Id already exists, try again');
                     }
-              
                 }
-
-                console.log(book);
             }
         })
         
         print(books, tbody);
 
-        valuesForm.forEach(input=>{
-            if(input.id && input.classList!="radio"){
-                input.value = "";
-            }
-            if(input.id=="Available"){
-                input.checked = true;
-            }
-        })
+        clearFields(valuesForm);
+       
    }
   });
+
