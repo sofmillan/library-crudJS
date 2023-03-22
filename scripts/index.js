@@ -94,7 +94,7 @@ document.addEventListener("click",(event)=>{
         id.value = selectedRow.children[0].textContent;
         name.value = selectedRow.children[1].textContent;
         genre.value = selectedRow.children[2].textContent;
-        if(selectedRow.children[3].textContent == "available"){
+        if(selectedRow.children[3].textContent == "Available"){
             available.checked = true;
         }else{
             unavailable.checked = true;
@@ -118,7 +118,7 @@ form.addEventListener("submit", (event) => {
                 if(input.className=="radio" && input.checked){
                     newBook[input.name] = input.value;
                 }
-                if(input.id!=="available" && input.id!=="unavailable"){
+                if(input.id!=="Available" && input.id!=="Unavailable"){
                         newBook[input.id] = input.value;
                 }   
             }
@@ -142,7 +142,7 @@ form.addEventListener("submit", (event) => {
             if(input.id && input.classList!="radio"){
                 input.value = "";
             }
-            if(input.id=="available"){
+            if(input.id=="Available"){
                 input.checked = true;
             }
         })
@@ -180,16 +180,13 @@ form.addEventListener("submit", (event) => {
         
         print(books, tbody);
 
-
         valuesForm.forEach(input=>{
             if(input.id && input.classList!="radio"){
                 input.value = "";
             }
-            if(input.id=="available"){
+            if(input.id=="Available"){
                 input.checked = true;
             }
         })
-
-
    }
   });

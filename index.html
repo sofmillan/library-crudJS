@@ -22,18 +22,18 @@
                 <select name="genre" id="genre">
                     <option value="" >Choose an option</option>
                     <option value="science">Science</option>
-                    <option value="socialStudies">Social Studies</option>
+                    <option value="social-studies">Social Studies</option>
                     <option value="math">Math</option>
                 </select>
 
                 <label for="status">Status</label>
                 
-                <input type="radio" class="radio" name="status" id="available" value="available" checked>
-                <label for="available" class="inline-label">Available</label>
+                <input type="radio" class="radio" name="status" id="Available" value="Available" checked>
+                <label for="Available" class="inline-label">Available</label>
                 <br>        
                 
-                <input type="radio" class="radio" name="status" id="unavailable" value="unavailable">
-                <label for="unavailable" class="inline-label">Unavailable</label>
+                <input type="radio" class="radio" name="status" id="Unavailable" value="Unavailable">
+                <label for="Unavailable" class="inline-label">Unavailable</label>
                 
                 <button type="submit" class="submitBtn">Save</button>
                 <button type="reset">Clear</button>
@@ -42,7 +42,7 @@
             
         
            </section>
-          <section class="table-section">
+          <section class="table-section" id="table-section">
             <form class="search">
                         <input type="text" placeholder="🔍Search book by id" id="inputSearch">
                     </form>
@@ -52,7 +52,7 @@
                             <th>Name</th>
                             <th>Genre</th>
                             <th>Status</th>
-                            <th>Botones</th>
+                            <th>Actions</th>
                         </thead>
                         <tbody id="table-body">
                             <tr class="table-row">

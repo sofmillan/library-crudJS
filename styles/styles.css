@@ -35,6 +35,9 @@ main{
     border: 2px solid #B6B8D6;
 }
 
+.form-section input[name="status"] {
+	accent-color: #6f58c9;
+}
 input:focus{
     outline: none;
     background-color:#f4f6ff ;
@@ -114,40 +117,37 @@ input:focus{
 }
 
 .delete{
-    background-color:#d44b52;
+    background-color:#df517c;
 }
 .delete:hover{
     cursor: pointer;
-    background-color:#db6b71;
+    background-color:#ff6593;
 }
 
 .update{
-    background-color:#4a8b5f;
+    background-color:#66b1a6;
 }
 
 .update:hover{
     cursor: pointer;
-    background-color:#66a08e;
+    background-color:#6fc2b6;
 }
 
 @media (max-width:1000px){
     main{
         flex-direction: column;
     }
-    .table-section{
+    .table-section, .form-section{
         width:100%;
-        min-width:700px;
-    }
-    .form-section{
-        width:70%;
-        min-width:350px;
-        margin:1rem auto 2rem;
     }
     
 }
 
 @media(max-width:650px){
-    .table-section{
-        overflow:scroll;
+    #table-section table{
+        width:580px;
+    }
+    #table-section{
+        overflow-x:scroll;
     }
 }
