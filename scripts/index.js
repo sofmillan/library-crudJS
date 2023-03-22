@@ -149,21 +149,32 @@ form.addEventListener("submit", (event) => {
 
         print(books, tbody);
     }else{
-        Swal.fire('Fill al the inputs')
+        Swal.fire('Fill all the inputs');
     }
    }else{
 
         books.forEach(book=>{
             if(targetName==book.id){
-                book.id = id.value;
-                book.name = name.value;
-                book.genre = genre.value;
-                if(available.checked){
-                    book.status = available.value;
+                let search = books.find(book=>book.id==id.value);
+                console.log(search);
+                if(book.id==id.value||(book.id!==id.value && !search)){
+                    book.id = id.value;
+                    book.name = name.value;
+                    book.genre = genre.value;
+                    if(available.checked){
+                        book.status = available.value;
+                    }else{
+                        book.status = unavailable.value;
+                    }
+                    Swal.fire('Book successfully updated');
                 }else{
-                    book.status = unavailable.value;
+                    if(search){
+                        Swal.fire('Id already exists, try again');
+                    }
+              
                 }
-                
+
+                console.log(book);
             }
         })
         
