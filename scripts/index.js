@@ -11,6 +11,7 @@ const form = document.getElementById("form");
 const searchForm= document.querySelector(".search");
 const searchInput = document.getElementById("inputSearch");
 
+let targetName;
 const print = (list, container) =>{
     container.innerHTML = "";
     list.forEach((item)=>{
@@ -22,7 +23,7 @@ const print = (list, container) =>{
         <td>${item.genre}</td>
         <td>${item.status}</td>
         <td><button class="delete" name="${item.id}">Delete</button>
-            <button class="edit" name="${item.id}">Update</button></td>
+            <button class="update" name="${item.id}">Update</button></td>
         `;
     container.appendChild(row);
     selectedRow = null;
@@ -90,7 +91,16 @@ document.addEventListener("click",(event)=>{
 
     if(target.classList.contains("update")){
         selectedRow = target.parentElement.parentElement;
-        console.log(selectedRow);
+        id.value = selectedRow.children[0].textContent;
+        name.value = selectedRow.children[1].textContent;
+        genre.value = selectedRow.children[2].textContent;
+        if(selectedRow.children[3].textContent == "available"){
+            available.checked = true;
+        }else{
+            unavailable.checked = true;
+        }
+
+        targetName = target.name;
     }
 })
 
@@ -100,7 +110,7 @@ form.addEventListener("submit", (event) => {
     const { target } = event;
    
     const valuesForm = Object.values(form);
-   if(!selectedrow){
+    if(selectedRow==null){
     if(name.value!==""&&id.value!==""&&genre.value!==""){
         const newBook = {};
         valuesForm.forEach((input)=>{
@@ -136,11 +146,39 @@ form.addEventListener("submit", (event) => {
                 input.checked = true;
             }
         })
+
         print(books, tbody);
     }else{
         Swal.fire('Fill al the inputs')
     }
    }else{
+
+        books.forEach(book=>{
+            if(targetName==book.id){
+                book.id = id.value;
+                book.name = name.value;
+                book.genre = genre.value;
+                if(available.checked){
+                    book.status = available.value;
+                }else{
+                    book.status = unavailable.value;
+                }
+                
+            }
+        })
+        
+        print(books, tbody);
+
+
+        valuesForm.forEach(input=>{
+            if(input.id && input.classList!="radio"){
+                input.value = "";
+            }
+            if(input.id=="available"){
+                input.checked = true;
+            }
+        })
+
 
    }
   });
