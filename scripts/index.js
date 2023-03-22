@@ -108,10 +108,11 @@ document.addEventListener("click",(event)=>{
         }else{
             unavailable.checked = true;
         }
-
         targetName = target.name;
     }
 })
+
+
 
 
 form.addEventListener("submit", (event) => {
@@ -119,9 +120,10 @@ form.addEventListener("submit", (event) => {
     const { target } = event;
    
     const valuesForm = Object.values(form);
-    if(!selectedRow){
-    if(name.value &&id.value &&genre.value){
+    
 
+    if(name.value && id.value && genre.value){
+        if(!selectedRow){
         const newBook = {};
 
         valuesForm.forEach((input)=>{
@@ -139,18 +141,14 @@ form.addEventListener("submit", (event) => {
 
         if(!search){
             books.push(newBook);
-    
-            Swal.fire('Book saved')
+            Swal.fire('Book saved');
         }else{
-            Swal.fire('Id already exists, try again')
+            Swal.fire('Id already exists, try again');
         }
       
         clearFields(valuesForm);
         print(books, tbody);
     }else{
-        Swal.fire('Fill all the inputs');
-    }
-   }else{
         books.forEach(book=>{
             if(targetName==book.id){
                 let search = books.find(book=>book.id==id.value);
@@ -159,26 +157,23 @@ form.addEventListener("submit", (event) => {
                     book.id = id.value;
                     book.name = name.value;
                     book.genre = genre.value;
-
-                    if(available.checked){
-                        book.status = available.value;
-                    }else{
-                        book.status = unavailable.value;
-                    }
+                    
+                    available.checked ? book.status = available.value: book.status = unavailable.value;
+                   
                     Swal.fire('Book successfully updated');
                 }else{
-
                     if(search){
                         Swal.fire('Id already exists, try again');
                     }
                 }
             }
         })
-        
         print(books, tbody);
-
         clearFields(valuesForm);
-       
+    }
+   }else{
+    Swal.fire('Fill all the inputs');
+
    }
   });
 
