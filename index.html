@@ -11,7 +11,7 @@
     <main>
         <section class="form-section">
             <h2 class="subtitle">Fill the information</h2>
-            <form action="" class="form" id="form">
+            <form class="form" id="form">
                 <label for="id">Id</label>
                 <input type="number" id="id" name="id">
             
@@ -20,7 +20,7 @@
             
                 <label for="genre">Genre</label>
                 <select name="genre" id="genre">
-                    <option value="/" disabled>Choose an option</option>
+                    <option value="" >Choose an option</option>
                     <option value="science">Science</option>
                     <option value="socialStudies">Social Studies</option>
                     <option value="math">Math</option>
@@ -28,14 +28,14 @@
 
                 <label for="status">Status</label>
                 
-                <input type="radio" name="status" id="available" value="available">
+                <input type="radio" class="radio" name="status" id="available" value="available" checked>
                 <label for="available" class="inline-label">Available</label>
                 <br>        
                 
-                <input type="radio" name="status" id="unavailable" value="unavailable">
+                <input type="radio" class="radio" name="status" id="unavailable" value="unavailable">
                 <label for="unavailable" class="inline-label">Unavailable</label>
                 
-                <button type="submit" id="submitBtn">Save</button>
+                <button type="submit" class="submitBtn">Save</button>
                 <button type="reset">Clear</button>
 
             </form>
@@ -61,7 +61,7 @@
                                 <td>Social Studies</td>
                                 <td>Available</td>
                                 <td><button class="delete">Delete</button>
-                                    <button class="edit">Update</button></td>
+                                    <button class="update">Update</button></td>
                                 
                             </tr>
                            

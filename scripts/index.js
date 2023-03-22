@@ -1,6 +1,6 @@
 import  {books} from "../data/data.js";
 
-let selectedrow = null;
+let selectedRow = null;
 const tbody = document.getElementById("table-body");
 const id = document.getElementById("id");
 const name = document.getElementById("name");
@@ -25,7 +25,7 @@ const print = (list, container) =>{
             <button class="edit" name="${item.id}">Update</button></td>
         `;
     container.appendChild(row);
-    selectedrow = null;
+    selectedRow = null;
     });
     found = [];
 }
@@ -38,6 +38,7 @@ print(books, tbody);
 searchForm.addEventListener("submit",(event)=>{
     event.preventDefault();
 
+  
     let inputValue = searchInput.value;
     let boolfound = false;
 
@@ -59,6 +60,7 @@ searchForm.addEventListener("submit",(event)=>{
     }
 })
 
+
 document.addEventListener("click",(event)=>{
     const { target } = event;
 
@@ -74,7 +76,7 @@ document.addEventListener("click",(event)=>{
           }).then((result) => {
             if (result.isConfirmed) {
                 const idBook = target.name;
-                const position = books.findIndex(book=>book.id=idBook);
+                const position = books.findIndex(book=>book.id==idBook);
                 books.splice(position,1);
               Swal.fire(
                 'Deleted!',
@@ -85,4 +87,60 @@ document.addEventListener("click",(event)=>{
             }
           })
     }
+
+    if(target.classList.contains("update")){
+        selectedRow = target.parentElement.parentElement;
+        console.log(selectedRow);
+    }
 })
+
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const { target } = event;
+   
+    const valuesForm = Object.values(form);
+   if(!selectedrow){
+    if(name.value!==""&&id.value!==""&&genre.value!==""){
+        const newBook = {};
+        valuesForm.forEach((input)=>{
+            if(input.id){
+                if(input.className=="radio" && input.checked){
+                    newBook[input.name] = input.value;
+                }
+                if(input.id!=="available" && input.id!=="unavailable"){
+                        newBook[input.id] = input.value;
+                }   
+            }
+        });
+    
+        let idExists = false;
+        books.forEach(book => {
+            if(book.id==newBook.id){
+                idExists = true;
+            }
+        })
+        if(!idExists){
+            books.push(newBook);
+            console.log(genre.value);
+            Swal.fire('Book saved')
+        }else{
+            Swal.fire('Id already exists, try again')
+        }
+      
+        valuesForm.forEach(input=>{
+            if(input.id && input.classList!="radio"){
+                input.value = "";
+            }
+            if(input.id=="available"){
+                input.checked = true;
+            }
+        })
+        print(books, tbody);
+    }else{
+        Swal.fire('Fill al the inputs')
+    }
+   }else{
+
+   }
+  });
